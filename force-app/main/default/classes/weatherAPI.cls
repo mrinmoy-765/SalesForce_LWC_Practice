@@ -1,7 +1,5 @@
 public with sharing class weatherAPI {
-    // public weatherAPI() {
-
-    // }
+ 
 
     @AuraEnabled
     public static string getWeather(String city){
