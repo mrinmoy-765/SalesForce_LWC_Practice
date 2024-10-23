@@ -1,68 +1,59 @@
 import { LightningElement } from 'lwc';
 
 export default class ConvertCurrency extends LightningElement {
+    showOutput = false;
+    convertedValue = "";
+    toCurrency = "";
+    fromCurrency = "";
+    toCurrency = "";
+    enteredamount = "";
+    currencyOptions = [];
 
-   showOutput = false;
-   convertedValue= "";
-   toCurrency = "";
-   fromCurrency = "";
-   enteredamount = '';
-   currencyOptions = [];
+    connectedCallback(){
+        this.fetchSymbols();
+    }
+    changeHandler(event){
+        let { name, value} = event.target;
+        if(name === 'amount') this.enteredamount = value;
+        if(name === 'fromcurr') this.fromCurrency = value;
+        if(name === 'tocurr') this.toCurrency = value;
+    }
+    clickHandler(){
+        this.conversion()
+    }
 
-
-   connectedCallback(){
-    this.fetchSymbols();
-   }
-
-   changeHandler(event){
-        let {name, value} = event.target;
-        if(name === "amount") this.enteredamount = value;
-        if(name === "fromcurr")this.fromCurrency = value;
-        if(name === "tocurr") this.toCurrency = value;
-   }
-
-
-   clickHandler(){
-    this.conversion();
-   }
-
-   async fetchSymbols(){
+    async fetchSymbols(){
         let endpoint = 'https://api.frankfurter.app/currencies';
         try{
             let response = await fetch(endpoint);
             if(!response.ok){
-                throw new Error('Network Response was not Ok');
+                 throw new Error('Network response was not OK');
             }
-            const data = await response.json()
+            const data = await response.json();
             //process the data returned from API
             let options = [];
             for(let symbol in data){
-                options = [...options,{label:symbol, value: symbol}]
+                options = [...options,{label:symbol, value:symbol}];
             }
-
             this.currencyOptions = [...options];
         }catch(error){
             console.log(error);
         }
-   }
+    }
 
-   
-   async conversion(){
-    let endpoint = 'https://api.frankfurter.app/latest?amount=${this.enteredamount}&from=${this.fromCurrency}&to=${this.toCurrency}';
-
-    try{
-            let response = await fetch(endpoint);
-            if(!response.ok){
-                throw new Error('Network Response was not Ok');
-            }
-            const data = await response.json()
-            //process the data returned from API
-            this.convertedValue = data.rates[this.toCurrency];
-            this.showOutput = true;
+    async conversion(){
+        let endpoint = `https://api.frankfurter.app/latest?amount=${this.enteredamount}&from=${this.fromCurrency}&to=${this.toCurrency}`;
+        try{
+             let response = await fetch (endpoint);
+             if(!response.ok){
+                  throw new Error("Network response was not OK");
+             }
+             const data = await response.json();
+             //process tthe data returned from API
+             this.convertedValue = data.rates[this.toCurrency];
+             this.showOutput = true;
         }catch(error){
             console.log(error);
         }
-
-   }
-
+    }
 }
