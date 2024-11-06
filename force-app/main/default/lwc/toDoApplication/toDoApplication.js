@@ -1,4 +1,12 @@
+import { createRecord } from 'lightning/uiRecordApi';
 import { LightningElement } from 'lwc';
+import TASK_MANAGER_OBJECT from "@salesforce/schema/Task_Manager__c";
+import TASK_NAME_FIELD from "@salesforce/schema/Task_Manager__c.Name";
+import TASK_DATE_FIELD from "@salesforce/schema/Task_Manager__c.Task_Date__c";
+import COMPLETED_DATE_FIELD from "@salesforce/schema/Task_Manager__c.Completed_Date__c";
+import ISCOMPLETED_FIELD from "@salesforce/schema/Task_Manager__c.Is_Completed__c";
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+
 
 export default class ToDoApplication extends LightningElement {
     taskname = "";
@@ -27,18 +35,31 @@ export default class ToDoApplication extends LightningElement {
         }
 
         if (this.validateTask()) {
-            this.incompletetask = [
-                ...this.incompletetask,
-                {
-                    taskname: this.taskname,
-                    taskdate: this.taskdate,
-                }
-            ];
+            // this.incompletetask = [
+            //     ...this.incompletetask,
+            //     {
+            //         taskname: this.taskname,
+            //         taskdate: this.taskdate,
+            //     }
+            // ];
 
-            this.resetHandler();
-            let sortedArray = this.sortTask(this.incompletetask);
-            this.incompletetask = [...sortedArray];
-            console.log("this.incompletetask", this.incompletetask);
+            // this.resetHandler();
+            // let sortedArray = this.sortTask(this.incompletetask);
+            // this.incompletetask = [...sortedArray];
+            // console.log("this.incompletetask", this.incompletetask);
+            let inputFields = {};
+            inputFields[TASK_NAME_FIELD.fieldApiName] = this.taskname;
+            inputFields[TASK_DATE_FIELD.fieldApiName] = this.taskdate;
+            inputFields[ISCOMPLETED_FIELD.fieldApiName] = false;
+
+            let recordInput = {
+               apiName : TASK_MANAGER_OBJECT.objectApiName,
+               fields : inputFields
+            };
+            createRecord(recordInput).then((result) =>{
+                console.log("Record Created Successfully", result);
+                this.showToast("Success","Task Created Successfully","success");
+            });
 
         }
     }
@@ -92,6 +113,7 @@ export default class ToDoApplication extends LightningElement {
         let sortedArray = this.sortTask(this.incompletetask);
         this.incompletetask = [...sortedArray];
         console.log("this.incompletetask", this.incompletetask);
+        
     }
 
     completeTaskHandler(event) {
@@ -120,5 +142,14 @@ export default class ToDoApplication extends LightningElement {
         console.log("this.incompletetask", this.incompletetask);
         //add the same entry in complete item
         this.completetask = [...this.completetask, removeItem[0]];
+    }
+
+    showToast(title, message, variant) {
+        const event = new ShowToastEvent({
+            title: title,
+            message: message,
+            variant: variant
+        });
+        this.dispatchEvent(event);
     }
 }
