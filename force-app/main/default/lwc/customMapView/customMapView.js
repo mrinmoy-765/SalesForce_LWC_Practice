@@ -137,4 +137,18 @@ export default class CustomMapView extends LightningElement {
   get styles() {
     return `height:${this.height}; width:${this.width}`;
   }
+
+  // @wire(getRecord, { recordId: '$recordId', layoutTypes: ['Full'] })
+  // wiredRecord({ error, data }) {
+  //   if (data) {
+  //     console.log('Record ID:', this.recordId); // Console log the record Id
+  //     console.log('Record Data:', data); // Log the entire record data if needed
+  //   } else if (error) {
+  //     console.error('Error fetching record:', error); // Log any errors
+  //   }
+  // }
+  
+  // connectedCallback() {
+  //   console.log('Record ID on load:', this.recordId); // Log recordId when the component loads
+  // }
 }

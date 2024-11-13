@@ -1,6 +1,6 @@
 import { api, LightningElement } from 'lwc';
 
-/**
+/*
  * A simple custom slider with different configuration options.
  * @alias CustomSlider
  * @extends LightningElement
@@ -107,7 +107,7 @@ export default class CustomSlider extends LightningElement {
 
       slideData = [
       {
-        "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.aaronreedphotography.com%2Fgallery%2Fbenefits-nature-photography-in-your-home%2F&psig=AOvVaw3ZPcRss-HKdGQMZNd4zuW4&ust=1731577664246000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNi3sK6E2YkDFQAAAAAdAAAAABAY",
+        "image": "https://images.pexels.com/photos/2325447/pexels-photo-2325447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         "heading": "Slide 1",
         "description": "Some description for slide 1"
       },

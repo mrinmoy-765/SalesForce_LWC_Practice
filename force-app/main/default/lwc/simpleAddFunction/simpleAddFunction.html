@@ -1,0 +1,14 @@
+<template>
+ <lightning-card>
+    <lightning-input type="number" label="First Num" value={num1} onchange={numChng}></lightning-input>
+    <lightning-input type="number" label="Second Num" value={num2} onchange={numChng2}></lightning-input>
+    
+    <lightning-button variant="brand" label="Add" title="Primary action" onclick={handleClick}
+        class="slds-m-left_x-small"></lightning-button>
+    <lightning-button variant="brand" label="Reset" title="Primary action" onclick={handleReset}
+        class="slds-m-left_x-small"></lightning-button>
+    <div class="slds-text-body_regular">
+        Sum: {sum}
+    </div>
+ </lightning-card> 
+</template>
