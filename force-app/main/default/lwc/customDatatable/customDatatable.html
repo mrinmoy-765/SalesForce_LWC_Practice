@@ -1,20 +1,16 @@
 <template>
-    <template lwc:if ={isLoading}>
-        <lightning-spinner alternative text="Loading" variant="brand"></lightning-spinner>
+    <template lwc:if={isLoading}>
+        <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
     </template>
     <template lwc:if={isUsedAsRelatedList}>
-        <div class="slds-page-header slds-page-header_record-home page-headerd">
+        <div class="slds-page-header slds-page-header_record-home page-header">
             <div class="slds-page-header__row">
                 <div class="slds-page-header__col-title">
                     <div class="slds-media">
                         <div class="slds-media__figure">
                             <span class="slds-icon_container">
-                                <lightning-icon
-                                icon-name={cardIcon}
-                                alternative-text={cardatitle}
-                                title={cardTitle}
-                                size="small">
-                                </lightning-icon>
+                                <lightning-icon icon-name={cardIcon} alternative-text={cardTitle} title={cardTitle}
+                                    size="small"></lightning-icon>
                             </span>
                         </div>
                         <div class="slds-media__body">
@@ -22,7 +18,60 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="slds-page-header__col-actions">
+                    <div class="slds-page-header__controls">
+                        <div class="slds-page-header__control">
+                            <template lwc:if={showMultipleRowDeleteAction}>
+                                <lightning-button lwc:if={hasSelectedRecords} label="Delete"
+                                    onclick={deleteSelectedRecords}></lightning-button>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-page-header__row slds-page-header__row_gutters">
+                <div class="slds-page-header__col-details">
+                    <ul class="slds-page-header__detail-row slds-p-around_none page-header-detail">
+                        <c-custom-datatable-extension key-field={keyField} data={records} columns={columns}
+                            column-widths-mode={columnWidthsMode} default-sort-direction={defaultSortDirection}
+                            draft-values={draftValues} hide-checkbox-column={hideCheckboxColumn}
+                            hide-table-header={hideTableHeader} max-column-width={maxColumnWidth}
+                            max-row-selection={maxRowSelection} min-column-width={minColumnWidth}
+                            row-number-offset={rowNumberOffset} resize-column-disabled={resizeColumnDisabled}
+                            show-row-number-column={showRowNumberColumn} suppress-bottom-bar={suppressBottomBar}
+                            onrowaction={handleRowAction} onrowselection={getSelectedRecords} onsave={handleSave}>
+                        </c-custom-datatable-extension>
+                    </ul>
+                </div>
             </div>
         </div>
+    </template>
+    <template lwc:elseif={showCard}>
+        <lightning-card title={cardTitle} icon-name={cardIcon}>
+            <template lwc:if={showMultipleRowDeleteAction}>
+                <lightning-button lwc:if={hasSelectedRecords} label="Delete" slot="actions"
+                    onclick={deleteSelectedRecords}></lightning-button>
+            </template>
+            <c-custom-datatable-extension key-field={keyField} data={records} columns={columns}
+                column-widths-mode={columnWidthsMode} default-sort-direction={defaultSortDirection}
+                draft-values={draftValues} hide-checkbox-column={hideCheckboxColumn} hide-table-header={hideTableHeader}
+                max-column-width={maxColumnWidth} max-row-selection={maxRowSelection} min-column-width={minColumnWidth}
+                row-number-offset={rowNumberOffset} resize-column-disabled={resizeColumnDisabled}
+                show-row-number-column={showRowNumberColumn} suppress-bottom-bar={suppressBottomBar}
+                onrowaction={handleRowAction} onrowselection={getSelectedRecords} onsave={handleSave}>
+            </c-custom-datatable-extension>
+        </lightning-card>
+    </template>
+    <template lwc:else>
+        <c-custom-datatable-extension key-field={keyField} data={records} columns={columns}
+            column-widths-mode={columnWidthsMode} default-sort-direction={defaultSortDirection}
+            draft-values={draftValues} hide-checkbox-column={hideCheckboxColumn} hide-table-header={hideTableHeader}
+            max-column-width={maxColumnWidth} max-row-selection={maxRowSelection} min-column-width={minColumnWidth}
+            row-number-offset={rowNumberOffset} resize-column-disabled={resizeColumnDisabled}
+            show-row-number-column={showRowNumberColumn} suppress-bottom-bar={suppressBottomBar}
+            onrowaction={handleRowAction} onrowselection={getSelectedRecords} onsave={handleSave}>
+        </c-custom-datatable-extension>
     </template>
 </template>
