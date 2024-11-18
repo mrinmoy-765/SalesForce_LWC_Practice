@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="File Upload with Progress Bar" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+            <lightning-input type="file" accept=".xlsx, .pdf, .csv" label="Attachment"
+                onchange={openfileUpload}></lightning-input>
+        </div>
+
+        <template if:true={fileData}>
+            <p class="slds-m-top_medium slds-m-bottom_small slds-p-left_x-small">
+                <b>Choosen File Name:</b> {fileData.filename}
+            </p>
+        </template>
+
+
+     
+        <template if:true={progressValue}>
+            <lightning-progress-bar class="slds-m-top_small slds-m-bottom_small" value={progressValue}
+                variant="success">
+            </lightning-progress-bar>
+            <p class="slds-m-top_x-small slds-m-bottom_x-small slds-m-left_x-small  ">
+            <b>Progress:</b> {progressValue}%</p>
+        </template>
+
+   
+        <lightning-button variant="brand" label="Submit" title="Submit" onclick={handleClick}
+            class="slds-m-left_x-small slds-m-top_x-small"></lightning-button>
+    </lightning-card>
+</template>
