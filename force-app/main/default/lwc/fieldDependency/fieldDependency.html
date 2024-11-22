@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Field Dependency" icon-name="standard:account">
+        <div class="slds-m-around_medium">
+            <!-- Country Combobox (Controlling Field) -->
+            <lightning-combobox name="country" label="Country" value={selectedCountry} options={countryOptions}
+                onchange={handleCountryChange}>
+            </lightning-combobox>
+
+            <!-- State Combobox (Dependent Field) -->
+            <lightning-combobox name="state" label="State" value={selectedState} options={stateOptions}
+                onchange={handleStateChange}>
+            </lightning-combobox>
+        </div>
+    </lightning-card>
+</template>
