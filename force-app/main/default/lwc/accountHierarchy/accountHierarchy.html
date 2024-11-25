@@ -1,0 +1,12 @@
+<template>
+<lightning-card title="Account and Child Account Tree Grid">
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..."></lightning-spinner>
+    </template>
+
+    <template if:false={isLoading}>
+        <lightning-tree-grid columns={gridColumns} data={gridData} key-field="Id" hide-checkbox-column>
+        </lightning-tree-grid>
+    </template>
+</lightning-card>
+</template>
