@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Stock API">
+        <div class="slds-var-m-around_medium">
+            <lightning-button label="Get Stock Market Information" onclick={buttonClick}></lightning-button>
+            <br>
+
+            <!-- Display API Response -->
+            <template if:true={stockData}>
+                <div class="slds-var-m-top_medium">
+                    <p><strong>Symbol:</strong> {stockData.Symbol}</p>
+                    <p><strong>Asset Type:</strong> {stockData.AssetType}</p>
+                    <p><strong>Name:</strong> {stockData.Name}</p>
+                    <p><strong>Description:</strong> {stockData.Description}</p>
+                    <p><strong>Exchange:</strong> {stockData.Exchange}</p>
+                    <p><strong>Country:</strong> {stockData.Country}</p>
+                    <p><strong>Sector:</strong> {stockData.Sector}</p>
+                    <p><strong>Industry:</strong> {stockData.Industry}</p>
+                    <p><strong>Market Capitalization:</strong> {stockData.MarketCapitalization}</p>
+                    <p><strong>PE Ratio:</strong> {stockData.PERatio}</p>
+                    <p><strong>Dividend Per Share:</strong> {stockData.DividendPerShare}</p>
+                    <p><strong>Official Site:</strong> <a href={stockData.OfficialSite}
+                            target="_blank">{stockData.OfficialSite}</a></p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
