@@ -1,0 +1,85 @@
+.view-more-container {
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.view-more-text {
+    color: #0070d2;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.view-more-text:hover {
+    text-decoration: underline;
+}
+
+.custom-related-list {
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    padding: 0;
+    margin: 0;
+}
+
+.slds-button-group {
+    margin: 0;
+}
+
+
+.slds-cell-wrap_container {
+    display: none;
+}
+
+/* my css */
+
+
+.custom-card-header {
+    background-color: #f4f6f9;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dcdcdc;
+
+}
+
+
+.custom-card-header .title-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+.slds-button-group {
+    margin: 0;
+}
+
+.THIS.customCardClass > header.slds-card__header.slds-grid{
+    padding-top:0px;    
+}
+
+
+.view-more-container{
+    background-color: white;
+    margin-top: 0px;
+    padding-top:0px;
+}
+
+.title{
+    font-size: 1.25rem;
+}
+
+.custom-card-container {
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.customCardClass {
+    border-radius: inherit;
+}
+
+.view-more-text{
+   padding: 10px 0px;
+}

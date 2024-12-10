@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Accounts Tree Grid" icon-name="custom:custom63">
+        <lightning-tree-grid data={gridData} columns={columns} key-field="id" onrowaction={handleRowAction}
+            hide-checkbox-column>
+        </lightning-tree-grid>
+    </lightning-card>
+
+    <!-- Child Accounts Section -->
+    <template if:true={showChildAccounts}>
+        <lightning-card title="Child Accounts" icon-name="standard:account">
+            <p class="slds-p-horizontal_small">Child Accounts for Parent: {parentAccountName}</p>
+
+            <!-- No Child Accounts Message -->
+            <template if:true={noChildAccountsMessage}>
+                <p class="slds-text-body_regular slds-text-color_error">
+                    {noChildAccountsMessage}
+                </p>
+            </template>
+
+            <!-- Child Accounts Datatable -->
+            <template if:false={noChildAccountsMessage}>
+                <lightning-datatable data={childAccounts} columns={childColumns} key-field="id">
+                </lightning-datatable>
+            </template>
+        </lightning-card>
+    </template>
+</template>
