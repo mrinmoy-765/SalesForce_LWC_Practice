@@ -3,6 +3,11 @@ public with sharing class AccountController {
   }
   @AuraEnabled(cacheable=true)
   public static List<Account> getAccounts() {
-    return [SELECT Id, Name, Type, Industry FROM Account LIMIT 3];
+    return [SELECT Id, Name, Type, Industry, Phone FROM Account LIMIT 3];
+  }
+
+  @AuraEnabled
+  public static List<Account> getAccountRecordList() {
+    return [SELECT Id, Name, Type, Industry, Phone FROM Account LIMIT 10];
   }
 }
