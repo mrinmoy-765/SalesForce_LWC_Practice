@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Display Data Using Wire Decorator">
+        <template for:each={data} for:item="account">
+            <div key={account.Id} style="margin-bottom: 10px;">
+                <div class="slds-p-horizontal_small">
+                     <p><strong>ID:</strong> {account.Id}</p>
+                     <p><strong>Name:</strong> {account.Name}</p>
+                     <p><strong>Type:</strong> {account.Type}</p>
+                     <p><strong>Industry:</strong> {account.Industry}</p>
+                </div>
+            </div>
+        </template>
+    </lightning-card>
+</template>
+
